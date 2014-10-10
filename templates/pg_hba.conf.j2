@@ -27,6 +27,11 @@
 host  all  all  {{host}}/{{ postgresql_pg_hba_cidr_mask }}  password
 {% endfor %}
 
+# md5 hosts
+{% for host in postgresql_pg_hba_md5_hosts %}
+host  all  all  {{host}}/{{ postgresql_pg_hba_cidr_mask }}  md5
+{% endfor %}
+
 # Trusted hosts
 {% for host in postgresql_pg_hba_trust_hosts %}
 host  all  all  {{host}}/{{ postgresql_pg_hba_cidr_mask }}  trust

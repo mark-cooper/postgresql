@@ -36,6 +36,7 @@ postgresql_pg_hba_default:
 
 postgresql_pg_hba_cidr_mask: "32"
 postgresql_pg_hba_passwd_hosts: []
+postgresql_pg_hba_md5_hosts: []
 postgresql_pg_hba_trust_hosts: []
 postgresql_pg_hba_custom: []
 
