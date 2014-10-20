@@ -29,16 +29,6 @@
 #     mode: 0640
 #   register: postgresql_configuration_pt1
 
-- name: PostgreSQL | Update configuration - pt. 1 (pg_hba.conf)
-  copy:
-    src: pg_hba.conf
-    dest: "{{postgresql_conf_directory}}/pg_hba.conf"
-    force: no
-    owner: "{{postgresql_admin_user}}"
-    group: "{{postgresql_admin_user}}"
-    mode: 0640
-  register: postgresql_configuration_pt1
-
 - name: PostgreSQL | Update configuration - pt. 2 (postgresql.conf)
   template:
     src: postgresql.conf.j2
