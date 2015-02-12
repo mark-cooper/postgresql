@@ -1,5 +1,10 @@
 # file: postgresql/defaults/main.yml
 
+# By default use the role provided template to configure pg_hba.conf
+# Set this to `false` if configuring pg_hba.conf using delegation with
+# something like the `lineinfile` module for example
+postgresql_pg_hba_configure: true
+
 # Basic settings
 postgresql_version: 9.3
 postgresql_encoding: 'UTF-8'

@@ -25,10 +25,15 @@
   template:
     src: pg_hba.conf.j2
     dest: "{{postgresql_conf_directory}}/pg_hba.conf"
+  when: postgresql_pg_hba_configure
+  register: postgresql_configuration_pt1
+
+- name: PostgreSQL | Update configuration - pt. 1.5 (pg_hba.conf permissions)
+  file:
+    path: "{{postgresql_conf_directory}}/pg_hba.conf"
     owner: "{{ postgresql_service_user }}"
     group: "{{ postgresql_service_group }}"
     mode: 0640
-  register: postgresql_configuration_pt1
 
 - name: PostgreSQL | Update configuration - pt. 2 (postgresql.conf)
   template:
@@ -51,4 +56,4 @@
   service:
     name: postgresql
     state: restarted
-  when: postgresql_configuration_pt1.changed or postgresql_configuration_pt2.changed
+  when: "(postgresql_configuration_pt1 is defined and postgresql_configuration_pt1.changed) or postgresql_configuration_pt2.changed"
